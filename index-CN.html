@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <!-- 适配手机端 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赵玎城- 个人主页</title>
+    <!-- 引入Bootstrap简化样式（无需自己写大量CSS） -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <style>
+        /* 页面整体样式 */
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        /* 导航栏样式 */
+        .navbar {
+            background-color: #343a40 !important;
+        }
+        /* 首页个人简介区域 */
+        .profile-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .profile-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">赵玎城</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index-CN.html">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-CN.html">关于我</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">English Version</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页个人简介 -->
+    <section class="profile-section">
+        <div class="container">
+            <!-- 首页头像 -->
+            <img src="me.jpg" alt="头像" class="profile-avatar">
+            <h1>赵玎城</h1>
+            <p class="lead">计算机科学专业 · 大二学生</p>
+            <p>机器学习 LLM | 热爱编程与金融科技</p>
+            <!-- 按钮 -->
+            <a href="about-CN.html" class="btn btn-primary btn-lg m-2">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 引入Bootstrap的JS（实现导航栏折叠等交互） -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
