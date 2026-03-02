@@ -33,6 +33,28 @@
             border: 5px solid #fff;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+
+        /* 语言切换按钮样式 */
+        .lang-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border: 1px solid #b29f9f;
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            margin-left: 8px;
+        }
+        .lang-switch:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.8);
+            color: #fff !important;
+        }
+        .lang-switch svg {
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
@@ -47,7 +69,19 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index-CN.html">首页</a></li>
                     <li class="nav-item"><a class="nav-link" href="about-CN.html">关于我</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html">English Version</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link lang-switch" href="index-CN.html">
+                            <!-- 地球 SVG 图标 -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                            English Version
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -57,9 +91,10 @@
     <section class="profile-section">
         <div class="container">
             <!-- 首页头像 -->
-            <img src="me.jpg" alt="头像" class="profile-avatar">
+            <img src="meSmall.jpg" alt="头像" class="profile-avatar">
             <h1>赵玎城</h1>
             <p class="lead">计算机科学专业 · 大二学生</p>
+            <p class="lead">香港大学</p>
             <p>机器学习 LLM | 热爱编程与金融科技</p>
             <!-- 按钮 -->
             <a href="about-CN.html" class="btn btn-primary btn-lg m-2">了解更多</a>
