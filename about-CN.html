@@ -3,60 +3,492 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我 - XXX的个人网站</title>
+    <title>赵玎城 </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #f8f9fa; }
-        .about-section { padding: 60px 0; }
-        .skill-tag { background-color: #0d6efd; color: #fff; padding: 5px 10px; border-radius: 20px; margin: 5px; }
+        :root {
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --accent: #7c3aed;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --radius: 16px;
+            --shadow: 0 4px 24px rgba(30,41,59,0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            background: rgba(15, 23, 42, 0.97) !important;
+            backdrop-filter: blur(12px);
+            padding: 0.9rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            color: #fff !important;
+        }
+        .nav-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75) !important;
+            transition: color 0.2s;
+            padding: 0.4rem 0.75rem !important;
+            border-radius: 6px;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #fff !important;
+            background: rgba(255,255,255,0.1);
+        }
+        .lang-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 0.3rem 0.7rem !important;
+        }
+        .lang-switch:hover { border-color: rgba(255,255,255,0.6); }
+
+        /* ── Hero Banner ── */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2563eb 100%);
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(124,58,237,0.18) 0%, transparent 60%);
+        }
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .avatar-wrapper {
+            flex-shrink: 0;
+        }
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 4px solid rgba(255,255,255,0.25);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-avatar:hover {
+            transform: scale(1.04);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        }
+        .hero-text h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+        .hero-text .subtitle {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+        .hero-text .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.4rem;
+        }
+        .hero-tag {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.88);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.75);
+            font-size: 0.83rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .contact-link:hover { color: #fff; }
+        .contact-link svg { opacity: 0.8; }
+        .btn-cv {
+            background: #fff;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 7px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .btn-cv:hover {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.4);
+        }
+
+        /* ── Main Content ── */
+        .main-content {
+            padding: 60px 0 80px;
+        }
+
+        /* ── Section Card ── */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 36px 40px;
+            margin-bottom: 28px;
+            border: 1px solid var(--border);
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Bio ── */
+        .bio-text {
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: var(--text-muted);
+        }
+        .motto {
+            margin-top: 16px;
+            padding: 14px 18px;
+            background: var(--primary-light);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* ── Skills ── */
+        .skill-group { margin-bottom: 20px; }
+        .skill-group:last-child { margin-bottom: 0; }
+        .skill-category {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .skill-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin: 3px 4px 3px 0;
+            transition: transform 0.15s, box-shadow 0.15s;
+            cursor: default;
+        }
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        .tag-blue  { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+        .tag-purple{ background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; }
+        .tag-green { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+
+        /* ── Timeline ── */
+        .timeline { position: relative; padding-left: 28px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 28px;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot {
+            position: absolute;
+            left: -24px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        .timeline-date {
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+        .timeline-title {
+            font-size: 0.97rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+        .timeline-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .hero-inner { flex-direction: column; text-align: center; }
+            .hero-text .tags, .contact-links { justify-content: center; }
+            .hero-text h1 { font-size: 1.8rem; }
+            .section-card { padding: 24px 20px; }
+        }
     </style>
 </head>
 <body>
-    <!-- 复用导航栏（和首页一致） -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Home Page</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="about.html">关于我</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">我的项目</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">联系方式</a></li>
-                </ul>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index-CN.html">赵玎城</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center gap-1">
+                <li class="nav-item"><a class="nav-link" href="index-CN.html">首页</a></li>
+                <li class="nav-item"><a class="nav-link active" href="about-CN.html">关于我</a></li>
+                <li class="nav-item">
+                    <a class="nav-link lang-switch" href="about.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                        English
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="avatar-wrapper">
+                <img src="me.jpg" alt="赵玎城" class="profile-avatar">
+            </div>
+            <div class="hero-text">
+                <h1>赵玎城</h1>
+                <p class="subtitle">大二在读 · 计算机科学专业 · 香港大学</p>
+                <div class="tags">
+                    <span class="hero-tag">🤖 机器学习</span>
+                    <span class="hero-tag">💬 大语言模型</span>
+                    <span class="hero-tag">⛓ 区块链</span>
+                    <span class="hero-tag">📈 量化金融</span>
+                </div>
+                <div class="contact-links">
+                    <!-- Location -->
+                    <span class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        香港
+                    </span>
+                    <!-- Email -->
+                    <a class="contact-link" href="mailto:shredry1@gmail.com">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        shredry1@gmail.com
+                    </a>
+                    <!-- GitHub -->
+                    <a class="contact-link" href="https://github.com/sh0redry" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                        GitHub
+                    </a>
+                    <!-- CV -->
+                    <a class="btn-cv" href="Resume.pdf" target="_blank">
+                        ↓ 下载简历
+                    </a>
+                </div>
+                <div>
+                    <span class="contact-link">微信：sh0redry0323</span>
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- 关于我内容 -->
-    <section class="about-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>个人简介</h2>
-                    <p>姓名：XXX</p>
-                    <p>年级：计算机科学与技术专业 大二</p>
-                    <p>兴趣方向：Web开发、Python后端、算法学习</p>
-                    <p>个人寄语：持续学习，把每一个小项目做到极致</p>
+<!-- Main -->
+<section class="main-content">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Left column -->
+            <div class="col-lg-5">
+
+                <!-- Bio -->
+                <div class="section-card">
+                    <div class="section-title">关于我</div>
+                    <p class="bio-text">
+                        我是<strong>香港大学</strong>计算与数据科学学院的本科生，在数理统计、线性代数和概率论等方面取得了优异的学业成绩。
+                    </p>
+                    <p class="bio-text">
+                        我同时修读金融学第二主修，这激发了我对<strong>金融与计算机科学交叉领域研究</strong>的浓厚兴趣。在主修专业中，我专注于金融计算，并对机器学习与多模态学习抱有热情。希望未来能将金融知识与算法相结合，应用于投资领域。
+                    </p>
                 </div>
-                <div class="col-md-6">
-                    <h2>技能栈</h2>
-                    <div>
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">MySQL</span>
+
+                <!-- Skills -->
+                <div class="section-card">
+                    <div class="section-title">技能</div>
+
+                    <div class="skill-group">
+                        <div class="skill-category">编程语言</div>
+                        <span class="skill-tag tag-blue">Python (NumPy)</span>
+                        <span class="skill-tag tag-blue">C / C++</span>
+                        <span class="skill-tag tag-blue">HTML/CSS/JavaScript</span>
+                        <span class="skill-tag tag-blue">Java</span>
+                        <span class="skill-tag tag-blue">Bash</span>
+                        <span class="skill-tag tag-blue">LaTeX</span>
                     </div>
-                    <h2 class="mt-4">教育背景</h2>
-                    <p>202X - 至今：XX大学 计算机科学与技术专业</p>
+
+                    <div class="skill-group">
+                        <div class="skill-category">工具与软件</div>
+                        <span class="skill-tag tag-purple">Git</span>
+                        <span class="skill-tag tag-purple">Conda</span>
+                        <span class="skill-tag tag-purple">Docker</span>
+                        <span class="skill-tag tag-purple">WSL 2</span>
+                        <span class="skill-tag tag-purple">Cursor</span>
+                        <span class="skill-tag tag-purple">Claude Code</span>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-category">语言能力</div>
+                        <span class="skill-tag tag-green">普通话（母语）</span>
+                        <span class="skill-tag tag-green">英语（流利）</span>
+                        <span class="skill-tag tag-green">粤语（入门）</span>
+                    </div>
                 </div>
+
+            </div>
+
+            <!-- Right column -->
+            <div class="col-lg-7">
+
+                <!-- Education -->
+                <div class="section-card">
+                    <div class="section-title">教育经历</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2024年9月 — 至今</div>
+                            <div class="timeline-title">香港大学</div>
+                            <div class="timeline-sub">计算机科学工程学士 · 金融学第二主修</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="section-card">
+                    <div class="section-title">实习与校园经历</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot" style="background: var(--accent); box-shadow: 0 0 0 2px var(--accent);"></div>
+                            <div class="timeline-date" style="color: var(--accent);">2025年6月</div>
+                            <div class="timeline-title">金融实习生 — 中信证券营业部</div>
+                            <div class="timeline-sub">金融 · 投资</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot" style="background: var(--accent); box-shadow: 0 0 0 2px var(--accent);"></div>
+                            <div class="timeline-date" style="color: var(--accent);">2024年10月 — 2025年10月</div>
+                            <div class="timeline-title">第二十三届执行委员会，内务秘书</div>
+                            <div class="timeline-sub">香港大学内地本科生联合会</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Info -->
+                <div class="section-card">
+                    <div class="section-title">基本信息</div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div style="background:var(--primary-light);border-radius:10px;padding:16px 20px;">
+                                <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--primary);margin-bottom:4px;">年级</div>
+                                <div style="font-weight:600;color:var(--text-main);">大二（2024年入学, 预计2028年毕业）</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div style="background:#f5f3ff;border-radius:10px;padding:16px 20px;">
+                                <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--accent);margin-bottom:4px;">所在地</div>
+                                <div style="font-weight:600;color:var(--text-main);">香港</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div style="background:#fff7ed;border-radius:10px;padding:16px 20px;">
+                                <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#c2410c;margin-bottom:4px;">研究方向</div>
+                                <div style="font-weight:600;color:var(--text-main);">机器学习 · 金融科技 · 大语言模型</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
