@@ -8,10 +8,18 @@
     <style>
         body { background-color: #f8f9fa; }
         .about-section { padding: 60px 0; }
-        .skill-tag { background-color: #0d6efd; color: #fff; padding: 5px 10px; border-radius: 20px; margin: 5px; }
-        
+        .skill-tag { background-color: #0d6efd; color: #fff; padding: 5px 10px; border-radius: 20px; margin: 5px 3px; display: inline-block; }
+        .skill-category { font-weight: 600; margin-top: 10px; margin-bottom: 5px; }
         .profile-avatar { width: 180px; height: 270px; border-radius: 50%; margin-bottom: 20px; border: 5px solid #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .lead { font-size: 2rem; font-weight: 500; margin: 1.5rem 0; }
+        .contact-container {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.05);
+        }
+        h2 { margin-top: 3rem; }
     </style>
 </head>
 <body>
@@ -26,6 +34,19 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="about.html">About Me</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link lang-switch" href="about-CN.html">
+                            <!-- 地球 SVG 图标 -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                            切换中文
+                        </a>
+                    </li>
                     
                 </ul>
             </div>
@@ -44,18 +65,66 @@
                     <p>Second Major in Finance</p>
                     <p>Interests: Machine Learning, LLMs, Blockchain, Quantative Finance</p>
                     <p>Personal Motto: Keep learning and make every small project perfect.</p>
-                </div>
-                <div class="col-md-6">
-                    <h2>Skills</h2>
-                    <div>
-                        <span class="skill-tag">HTML/CSS/JavaScript</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">MySQL</span>
+
+                    <div class="contact-container">
+                        <div class="mb-2">Hong Kong</div>
+                        <div class="mb-2">Email: shredry1@gmail.com</div>
+                        <div class="mb-2">WeChat: sh0redry0323</div>
+                        <div class="mb-2">
+                            <a href="Resume.pdf" target="_blank" class="text-primary">CV</a>
+                        </div>
+                        <div>
+                            <a href="https://github.com/sh0redry" target="_blank" class="text-primary">Github</a>
+                        </div>
                     </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div style="margin: 1rem 0;">I am an undergraduate student at School of Computing and Data Science, The University of Hong Kong.</div>
+                    <div style="margin: 1rem 0;">I have achieved excellent academic results in mathematical statistics, linear algebra, and probability theory. I am also pursuing a second major in Finance, which has sparked my strong interest in interdisciplinary research at the intersection of finance and computer science. Within my major, I focus on financial computing, and I am interested in areas such as machine learning and multimodal learning. I hope to combine my knowledge of finance and algorithms for applications in the investment field in the future</div>
+                    <h2>Skills</h2>
+                    
+                    <!-- Agent Frameworks 分类 -->
+                    
+                    
+                    <!-- Programming 分类 -->
+                    <div class="skill-category">Programming</div>
+                    <div>
+                        <span class="skill-tag">Python (NumPy)</span>
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">LaTeX</span>
+                        
+                    </div>
+                    
+                    <!-- Tools & Software 分类 -->
+                    <div class="skill-category">Tools & Software</div>
+                    <div>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Conda</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">WSL 2</span>
+                        <span class="skill-tag">Cursor</span>
+                        <span class="skill-tag">Claude Code</span>
+                    </div>
+                    
+                    <!-- Languages 分类 -->
+                    <div class="skill-category">Languages</div>
+                    <div>
+                        <span class="skill-tag">Mandarin (Native)</span>
+                        <span class="skill-tag">English (Fluent)</span>
+                        <span class="skill-tag">Cantonese (Beginner)</span>
+                    </div>
+
                     <h2 class="mt-4">Education Background</h2>
-                    <p>202X - Present: XX University, Computer Science and Technology</p>
+                    <p>2024.9 - Present: The University of Hong Kong, Bachelor of Engineering in Computer Science </p>
+                    
+                    <h2 class="mt-4">Internship & Campus Experience</h2>
+                    <p>2025.6 : Financial Internship, CITIC</p>
+                    <p>2024.10-2025.10 : Internal Secretary, Chinese Scholar and Student Association, Undergradute  Department</p>
+                    
                 </div>
             </div>
         </div>
