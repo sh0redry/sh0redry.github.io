@@ -120,7 +120,7 @@
     .hero-image img {
       display: block;
       width: 100%;
-      height: 270px;
+      height: 540px;
       object-fit: cover;
       border-radius: 26px;
       box-shadow: 0 18px 36px rgba(119, 83, 57, 0.18);
@@ -204,6 +204,81 @@
     .section-head span {
       color: var(--muted);
       font-size: 13px;
+    }
+
+    .feature-strip {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 72%;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .feature-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .feature-card {
+      position: relative;
+      min-height: 188px;
+      border-radius: 24px;
+      overflow: hidden;
+      text-decoration: none;
+      color: #fffaf6;
+      scroll-snap-align: start;
+      box-shadow: 0 16px 30px rgba(122, 95, 77, 0.14);
+    }
+
+    .feature-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(58, 36, 24, 0.08), rgba(58, 36, 24, 0.58));
+    }
+
+    .feature-copy {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1;
+    }
+
+    .feature-copy span {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 250, 245, 0.18);
+      border: 1px solid rgba(255, 250, 245, 0.22);
+      backdrop-filter: blur(8px);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .feature-copy h3 {
+      margin: 10px 0 4px;
+      font-size: 24px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .feature-copy p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(255, 250, 246, 0.9);
     }
 
     .preview-grid {
@@ -303,7 +378,7 @@
 
     <section class="hero">
       <div class="hero-copy">
-        <span class="top-badge">Taobao mobile landing</span>
+        <span class="top-badge">MKTG2501 Group Group</span>
         <h1>Meet the softest corner of Jellycat.</h1>
         <p>
           A mobile-first storefront concept for a Jellycat official flagship shop,
@@ -312,16 +387,57 @@
       </div>
 
       <div class="hero-image">
-        <img src="image/zdc.png" alt="Jellycat featured visual placeholder">
+        <img src="image/Jellycat.png" alt="Jellycat featured visual placeholder">
         <div class="floating-note">
           New Season Edit
-          <strong>12 playful arrivals</strong>
+          <strong>Jellycat Flagship</strong>
         </div>
       </div>
 
       <div class="actions">
-        <a class="primary-btn" href="shop.html">Enter the Store</a>
+        <a class="primary-btn" href="shop.html">Explore Jellycat</a>
         <a class="ghost-btn" href="#preview" aria-label="Jump to preview">↓</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Editorial Worlds</h2>
+        <span>Slow auto carousel</span>
+      </div>
+      <div class="feature-strip" id="featureStrip" aria-label="Editorial categories">
+        <a class="feature-card" href="shop.html">
+          <img src="image/whitePuppy.jpg" alt="Classic plush collection placeholder">
+          <div class="feature-copy">
+            <span>Iconic Picks</span>
+            <h3>Classic Plush Toys</h3>
+            <p>Timeless Jellycat favorites with a soft collectible feel.</p>
+          </div>
+        </a>
+        <a class="feature-card" href="shop.html">
+          <img src="image/adultPajama.jpg" alt="Adult pajama collection placeholder">
+          <div class="feature-copy">
+            <span>Soft Living</span>
+            <h3>Adult Sleepwear</h3>
+            <p>Cozy loungewear ideas shaped around comfort and gentle textures.</p>
+          </div>
+        </a>
+        <a class="feature-card" href="shop.html">
+          <img src="image/parent.jpg" alt="Parent and child collection placeholder">
+          <div class="feature-copy">
+            <span>Family Edit</span>
+            <h3>Parent & Child World</h3>
+            <p>Warm matching moments built for gifting and family storytelling.</p>
+          </div>
+        </a>
+        <a class="feature-card" href="shop.html">
+          <img src="image/couple.png" alt="Couple collection placeholder">
+          <div class="feature-copy">
+            <span>Gift Studio</span>
+            <h3>Couples Corner</h3>
+            <p>Playful pairings and sweet picks for shared plush memories.</p>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -332,28 +448,28 @@
       </div>
       <div class="preview-grid">
         <a class="preview-card" href="shop.html">
-          <img src="image/zdc.png" alt="Preview product placeholder">
-          <h3>Bashful Bunny</h3>
-          <p>Soft blush tones and classic floppy ears for gifting season.</p>
-          <strong>$32</strong>
+          <img src="image/penguin.png" alt="Preview product placeholder">
+          <h3>Adorable Penguin Adult Pajamas</h3>
+          <p>Playful penguin prints with a soft, cozy fit for relaxed nights in.</p>
+          <strong>$799.99</strong>
         </a>
         <a class="preview-card" href="shop.html">
-          <img src="image/zdc.png" alt="Preview product placeholder">
-          <h3>Amuseables Sun</h3>
-          <p>A cheerful plush icon with a bright boutique display feel.</p>
-          <strong>$28</strong>
+          <img src="image/bear.png" alt="Preview product placeholder">
+          <h3>Bear Adult Pajamas</h3>
+          <p>Warm bear-inspired loungewear designed for comfort and a cute home mood.</p>
+          <strong>$799.99</strong>
         </a>
         <a class="preview-card" href="shop.html">
-          <img src="image/zdc.png" alt="Preview product placeholder">
-          <h3>Bartholomew Bear</h3>
-          <p>Collector favorite with a timeless silhouette and cuddly texture.</p>
-          <strong>$38</strong>
+          <img src="image/couple2.png" alt="Preview product placeholder">
+          <h3>Couple Pajama Gift Box</h3>
+          <p>Mix-and-match couple sleepwear in a ready-to-gift set for shared cozy moments.</p>
+          <strong>$1499.99</strong>
         </a>
         <a class="preview-card" href="shop.html">
-          <img src="image/zdc.png" alt="Preview product placeholder">
-          <h3>Little Pup Bag Charm</h3>
-          <p>Petite, playful, and ideal for cross-category impulse discovery.</p>
-          <strong>$22</strong>
+          <img src="image/family.png" alt="Preview product placeholder">
+          <h3>Parent-Child Family Value Set</h3>
+          <p>A family bundle with matching styles, made for easy gifting and playful home time.</p>
+          <strong>$1999.99</strong>
         </a>
       </div>
     </section>
@@ -361,30 +477,77 @@
     <section class="section">
       <div class="section-head">
         <h2>Store Story</h2>
-        <span>Crafted for mobile</span>
+        <span>Inspired by the real brand</span>
       </div>
       <div class="story-card">
         <p>
-          This entry page is built as a QR-code landing experience: quick brand
-          recognition, soft editorial visuals, and a frictionless path into the
-          shop homepage where visitors can continue scrolling through products.
+          Jellycat was founded in London in 1999 and has become known worldwide
+          for playful character design, soft textures, and a joyful gift-led
+          identity. The official brand story highlights original creations that
+          are made to make people smile, with collections now reaching customers
+          across dozens of global markets.
         </p>
         <div class="story-metrics">
           <div>
-            <strong>2s</strong>
-            <span>Fast first impression</span>
+            <strong>1999</strong>
+            <span>Founded in London</span>
           </div>
           <div>
-            <strong>100%</strong>
-            <span>Mobile layout focus</span>
+            <strong>77</strong>
+            <span>Countries reached</span>
           </div>
           <div>
-            <strong>1 tap</strong>
-            <span>From QR to shopping</span>
+            <strong>Joy</strong>
+            <span>Core brand promise</span>
           </div>
         </div>
       </div>
     </section>
   </main>
+  <script>
+    const featureStrip = document.getElementById("featureStrip");
+
+    if (featureStrip) {
+      featureStrip.innerHTML += featureStrip.innerHTML;
+
+      let autoScrollId = null;
+      let resumeTimerId = null;
+
+      function stepCarousel() {
+        featureStrip.scrollLeft += 0.35;
+
+        if (featureStrip.scrollLeft >= featureStrip.scrollWidth / 2) {
+          featureStrip.scrollLeft -= featureStrip.scrollWidth / 2;
+        }
+
+        autoScrollId = window.requestAnimationFrame(stepCarousel);
+      }
+
+      function startCarousel() {
+        if (!autoScrollId) {
+          autoScrollId = window.requestAnimationFrame(stepCarousel);
+        }
+      }
+
+      function stopCarousel() {
+        if (autoScrollId) {
+          window.cancelAnimationFrame(autoScrollId);
+          autoScrollId = null;
+        }
+      }
+
+      function pauseAndResume() {
+        window.clearTimeout(resumeTimerId);
+        stopCarousel();
+        resumeTimerId = window.setTimeout(startCarousel, 1200);
+      }
+
+      startCarousel();
+
+      featureStrip.addEventListener("pointerdown", pauseAndResume);
+      featureStrip.addEventListener("touchstart", pauseAndResume, { passive: true });
+      featureStrip.addEventListener("wheel", pauseAndResume, { passive: true });
+    }
+  </script>
 </body>
 </html>
