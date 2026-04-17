@@ -207,9 +207,8 @@
     }
 
     .feature-strip {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 72%;
+      display: flex;
+      align-items: stretch;
       gap: 12px;
       overflow-x: auto;
       scroll-snap-type: none;
@@ -224,6 +223,8 @@
 
     .feature-card {
       position: relative;
+      flex: 0 0 auto;
+      width: auto;
       min-height: 188px;
       border-radius: 24px;
       overflow: hidden;
@@ -234,9 +235,10 @@
     }
 
     .feature-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: auto;
+      max-width: 86vw;
+      height: 188px;
+      object-fit: contain;
       display: block;
     }
 

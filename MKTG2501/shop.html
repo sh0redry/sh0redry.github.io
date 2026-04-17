@@ -112,64 +112,83 @@
       font-weight: 700;
     }
 
-    .banner-strip {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 82%;
-      gap: 10px;
+    .feature-strip {
+      display: flex;
+      align-items: stretch;
+      gap: 12px;
       margin-top: 12px;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 2px;
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+      padding-bottom: 4px;
       scrollbar-width: none;
     }
 
-    .banner-strip::-webkit-scrollbar {
+    .feature-strip::-webkit-scrollbar {
       display: none;
     }
 
-    .banner {
+    .feature-card {
       position: relative;
-      min-height: 118px;
-      border-radius: 22px;
+      flex: 0 0 auto;
+      width: auto;
+      min-height: 250px;
+      border-radius: 24px;
       overflow: hidden;
+      text-decoration: none;
+      color: #fffaf6;
       scroll-snap-align: start;
-      box-shadow: 0 12px 28px rgba(120, 84, 60, 0.12);
+      box-shadow: 0 16px 30px rgba(122, 95, 77, 0.14);
     }
 
-    .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(0.92);
+    .feature-card img {
+      width: auto;
+      max-width: 86vw;
+      height: 250px;
+      object-fit: contain;
+      display: block;
     }
 
-    .banner::after {
+    .feature-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(59, 38, 27, 0.08), rgba(59, 38, 27, 0.48));
+      background: linear-gradient(180deg, rgba(58, 36, 24, 0.08), rgba(58, 36, 24, 0.58));
     }
 
-    .banner-copy {
+    .feature-copy {
       position: absolute;
-      inset: auto 12px 12px 12px;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
       z-index: 1;
-      color: #fff9f4;
     }
 
-    .banner-copy strong {
-      display: block;
-      font-size: 17px;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-    }
-
-    .banner-copy span {
+    .feature-copy span {
       display: inline-block;
-      margin-top: 4px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 250, 245, 0.18);
+      border: 1px solid rgba(255, 250, 245, 0.22);
+      backdrop-filter: blur(8px);
       font-size: 11px;
-      opacity: 0.92;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .feature-copy h3 {
+      margin: 10px 0 4px;
+      font-size: 24px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #fffaf6;
+    }
+
+    .feature-copy p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(255, 250, 246, 0.9);
     }
 
     .section-head {
@@ -190,6 +209,46 @@
       font-size: 13px;
     }
 
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 8px 2px 14px;
+    }
+
+    .filter-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+      flex: 1;
+    }
+
+    .filter-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      border: 0;
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 251, 246, 0.92);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 20px rgba(122, 95, 77, 0.08);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--accent), #e59373);
+      color: #fff9f4;
+      box-shadow: 0 12px 24px rgba(216, 111, 82, 0.24);
+    }
+
     .product-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -206,6 +265,10 @@
       border-radius: var(--radius-md);
       box-shadow: 0 14px 32px rgba(122, 95, 77, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.88);
+    }
+
+    .product-card.hidden {
+      display: none;
     }
 
     .product-card img {
@@ -278,6 +341,20 @@
       display: flex;
     }
 
+    .cart-sheet {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: end;
+      justify-content: center;
+      background: rgba(34, 23, 18, 0.42);
+      z-index: 25;
+    }
+
+    .cart-sheet.active {
+      display: flex;
+    }
+
     .detail-panel {
       width: min(100vw, 430px);
       border-radius: 28px 28px 0 0;
@@ -302,11 +379,25 @@
       background: rgba(90, 68, 54, 0.18);
     }
 
-    .detail-panel img {
+    .detail-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      height: 220px;
-      object-fit: cover;
+      min-height: 220px;
+      padding: 12px;
       border-radius: 22px;
+      background: #f7ede3;
+    }
+
+    .detail-image img {
+      width: 100%;
+      max-width: 100%;
+      max-height: 300px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 18px;
     }
 
     .detail-top {
@@ -380,13 +471,155 @@
       background: #f4e8dd;
       color: var(--text);
     }
+
+    .cart-fab {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      width: min(calc(100vw - 28px), 402px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 0;
+      border-radius: 22px;
+      background: rgba(46, 36, 29, 0.92);
+      color: #fffaf5;
+      box-shadow: 0 18px 34px rgba(44, 31, 24, 0.22);
+      backdrop-filter: blur(10px);
+      z-index: 18;
+    }
+
+    .cart-fab strong,
+    .cart-fab span {
+      display: block;
+    }
+
+    .cart-fab strong {
+      font-size: 15px;
+    }
+
+    .cart-fab span {
+      font-size: 12px;
+      color: rgba(255, 250, 245, 0.78);
+    }
+
+    .cart-fab em {
+      font-style: normal;
+      font-size: 16px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .cart-panel {
+      width: min(100vw, 430px);
+      max-height: 82vh;
+      overflow: auto;
+      border-radius: 28px 28px 0 0;
+      background: #fffaf5;
+      padding: 16px 16px 22px;
+      box-shadow: 0 -12px 40px rgba(44, 31, 24, 0.16);
+      transform: translateY(24px);
+      animation: slideUp 0.24s ease forwards;
+    }
+
+    .cart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .cart-head h3 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .cart-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .cart-empty {
+      padding: 18px;
+      border-radius: 20px;
+      background: #f8eee4;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 18px;
+      background: #fdf6ef;
+      border: 1px solid rgba(235, 219, 206, 0.9);
+    }
+
+    .cart-item img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .cart-item strong,
+    .cart-item span {
+      display: block;
+    }
+
+    .cart-item strong {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .cart-item span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .cart-item button {
+      border: 0;
+      background: transparent;
+      color: var(--accent-deep);
+      font-size: 18px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding: 14px 2px 0;
+      border-top: 1px solid rgba(73, 47, 32, 0.1);
+      font-weight: 800;
+    }
+
+    .cart-total span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
   <main class="phone-shell">
     <header class="store-header">
       <section class="header-card">
-        <img src="image/zdc.png" alt="Store avatar placeholder">
+        <img src="image/logo.jpg" alt="Store avatar placeholder">
         <div>
           <span class="eyebrow">Jellycat flagship</span>
           <h1>Soft friends for every little moment.</h1>
@@ -402,28 +635,39 @@
         </div>
       </section>
 
-      <section class="banner-strip" aria-label="Promotional banners">
-        <article class="banner">
-          <img src="image/zdc.png" alt="Promotional banner placeholder">
-          <div class="banner-copy">
-            <strong>Spring cuddle edit</strong>
-            <span>Fresh plush arrivals with soft pastel energy.</span>
+      <section class="feature-strip" id="featureStrip" aria-label="Editorial categories">
+        <a class="feature-card" href="shop.html">
+          <img src="image/penguin.png" alt="Classic plush collection placeholder">
+          <div class="feature-copy">
+            <span>Iconic Picks</span>
+            <h3>Classic Plush Toys</h3>
+            <p>Timeless Jellycat favorites with a soft collectible feel.</p>
           </div>
-        </article>
-        <article class="banner">
-          <img src="image/zdc.png" alt="Promotional banner placeholder">
-          <div class="banner-copy">
-            <strong>Giftable bestsellers</strong>
-            <span>Curated favorites for birthdays and sweet surprises.</span>
+        </a>
+        <a class="feature-card" href="shop.html">
+          <img src="image/bear.png" alt="Adult pajama collection placeholder">
+          <div class="feature-copy">
+            <span>Soft Living</span>
+            <h3>Adult Sleepwear</h3>
+            <p>Cozy loungewear ideas shaped around comfort and gentle textures.</p>
           </div>
-        </article>
-        <article class="banner">
-          <img src="image/zdc.png" alt="Promotional banner placeholder">
-          <div class="banner-copy">
-            <strong>Bag charms & minis</strong>
-            <span>Small collectible pieces for quick add-to-cart moments.</span>
+        </a>
+        <a class="feature-card" href="shop.html">
+          <img src="image/couple2.png" alt="Parent and child collection placeholder">
+          <div class="feature-copy">
+            <span>Family Edit</span>
+            <h3>Parent & Child World</h3>
+            <p>Warm matching moments built for gifting and family storytelling.</p>
           </div>
-        </article>
+        </a>
+        <a class="feature-card" href="shop.html">
+          <img src="image/family.png" alt="Couple collection placeholder">
+          <div class="feature-copy">
+            <span>Gift Studio</span>
+            <h3>Couples Corner</h3>
+            <p>Playful pairings and sweet picks for shared plush memories.</p>
+          </div>
+        </a>
       </section>
     </header>
 
@@ -432,20 +676,34 @@
       <span>Two-column mobile grid</span>
     </section>
 
+    <section class="toolbar" aria-label="Product filters">
+      <div class="filter-strip">
+        <button class="filter-btn active" type="button" data-filter="all">All Products</button>
+        <button class="filter-btn" type="button" data-filter="adult">Adult Styles</button>
+        <button class="filter-btn" type="button" data-filter="gift">Gift Boxes</button>
+        <button class="filter-btn" type="button" data-filter="bundle">Multi-Person Sets</button>
+      </div>
+    </section>
+
     <section class="product-grid">
+      
+
+
       <button
         class="product-card"
         type="button"
-        data-name="Bashful Blush Bunny"
-        data-price="$32"
-        data-desc="A timeless Jellycat-style bunny with floppy ears, soft blush fur, and a classic collectible feel for gifting or display."
+        data-category="adult"
+        data-name="Penguin Adult Pajama Set"
+        data-price="$799.99"
+        data-desc="A cozy adult pajama set with playful penguin artwork, brushed-soft fabric, and an easy relaxed fit made for warm winter nights and cute at-home photos."
+        data-image="image/penguin.png"
       >
-        <img src="image/zdc.png" alt="Bashful Blush Bunny placeholder">
-        <span class="product-badge">Best Seller</span>
-        <h3>Bashful Blush Bunny</h3>
-        <p>Classic soft toy styling with an elegant pastel boutique mood.</p>
+        <img src="image/penguin.png" alt="Penguin Adult Pajama Set">
+        <span class="product-badge">Adult Pajamas</span>
+        <h3>Penguin Adult Pajama Set</h3>
+        <p>Soft-touch loungewear with cheerful penguin details for a playful bedtime mood.</p>
         <div class="product-row">
-          <span class="product-price">$32</span>
+          <span class="product-price">$799.99</span>
           <span class="product-cta">View details</span>
         </div>
       </button>
@@ -453,16 +711,18 @@
       <button
         class="product-card"
         type="button"
-        data-name="Amuseables Sunshine"
-        data-price="$28"
-        data-desc="A cheerful decorative plush concept designed to stand out in banner placements, gift edits, and impulse-friendly mobile grids."
+        data-category="adult"
+        data-name="Fox Adult Pajama Set"
+        data-price="$799.99"
+        data-desc="A warm fox-themed pajama set designed with gentle colors, breathable comfort, and a charming woodland feel for everyday lounging."
+        data-image="image/fox.png"
       >
-        <img src="image/zdc.png" alt="Amuseables Sunshine placeholder">
-        <span class="product-badge">New In</span>
-        <h3>Amuseables Sunshine</h3>
-        <p>Bright, playful, and ideal for uplifting seasonal promotions.</p>
+        <img src="image/fox.png" alt="Fox Adult Pajama Set">
+        <span class="product-badge">Adult Pajamas</span>
+        <h3>Fox Adult Pajama Set</h3>
+        <p>Woodland-inspired sleepwear with a snug feel and a softly playful character look.</p>
         <div class="product-row">
-          <span class="product-price">$28</span>
+          <span class="product-price">$799.99</span>
           <span class="product-cta">View details</span>
         </div>
       </button>
@@ -470,16 +730,18 @@
       <button
         class="product-card"
         type="button"
-        data-name="Bartholomew Bear"
-        data-price="$38"
-        data-desc="A collector-favorite bear silhouette with a comforting shape, ideal for premium hero cards and classic plush storytelling."
+        data-category="adult"
+        data-name="Eggplant Adult Pajama Set"
+        data-price="$799.99"
+        data-desc="A whimsical adult pajama set featuring a fun eggplant motif, smooth cozy fabric, and a standout novelty style that still feels premium."
+        data-image="image/eggplant.png"
       >
-        <img src="image/zdc.png" alt="Bartholomew Bear placeholder">
-        <span class="product-badge">Collector Pick</span>
-        <h3>Bartholomew Bear</h3>
-        <p>Warm caramel tones and a timeless design for all ages.</p>
+        <img src="image/eggplant.png" alt="Eggplant Adult Pajama Set">
+        <span class="product-badge">Adult Pajamas</span>
+        <h3>Eggplant Adult Pajama Set</h3>
+        <p>Quirky character sleepwear that adds humor, comfort, and a bold homewear vibe.</p>
         <div class="product-row">
-          <span class="product-price">$38</span>
+          <span class="product-price">$799.99</span>
           <span class="product-cta">View details</span>
         </div>
       </button>
@@ -487,16 +749,18 @@
       <button
         class="product-card"
         type="button"
-        data-name="Little Puppy Charm"
-        data-price="$22"
-        data-desc="A mini accessory-style product concept that broadens the assortment with playful, lower-price-point collectible appeal."
+        data-category="adult"
+        data-name="Bear Adult Pajama Set"
+        data-price="$799.99"
+        data-desc="A classic bear-inspired pajama set with plush visual styling, a comforting relaxed silhouette, and a giftable cozy finish."
+        data-image="image/bear.png"
       >
-        <img src="image/zdc.png" alt="Little Puppy Charm placeholder">
-        <span class="product-badge">Mini Series</span>
-        <h3>Little Puppy Charm</h3>
-        <p>Compact, giftable, and perfect for younger audiences or add-ons.</p>
+        <img src="image/bear.png" alt="Bear Adult Pajama Set">
+        <span class="product-badge">Adult Pajamas</span>
+        <h3>Bear Adult Pajama Set</h3>
+        <p>Classic cozy sleepwear with sweet bear graphics and an easy premium lounge fit.</p>
         <div class="product-row">
-          <span class="product-price">$22</span>
+          <span class="product-price">$799.99</span>
           <span class="product-cta">View details</span>
         </div>
       </button>
@@ -504,16 +768,18 @@
       <button
         class="product-card"
         type="button"
-        data-name="Forest Friend Fox"
-        data-price="$35"
-        data-desc="A woodland-inspired plush concept with a storybook direction, suited for seasonal ranges and themed content collections."
+        data-category="gift"
+        data-name="Penguin Pajama Gift Box"
+        data-price="$1099.99"
+        data-desc="A premium gift set featuring one adult penguin pajama set and a matching penguin plush companion, curated for cozy gifting and collectible charm."
+        data-image="image/penguingift.png"
       >
-        <img src="image/zdc.png" alt="Forest Friend Fox placeholder">
-        <span class="product-badge">Story Edit</span>
-        <h3>Forest Friend Fox</h3>
-        <p>Soft rust tones with a whimsical, story-led retail presence.</p>
+        <img src="image/penguingift.png" alt="Penguin Pajama Gift Box">
+        <span class="product-badge">Gift Box</span>
+        <h3>Penguin Pajama Gift Box</h3>
+        <p>Includes a penguin pajama set and matching plush in one ready-to-gift bundle.</p>
         <div class="product-row">
-          <span class="product-price">$35</span>
+          <span class="product-price">$1099.99</span>
           <span class="product-cta">View details</span>
         </div>
       </button>
@@ -521,16 +787,94 @@
       <button
         class="product-card"
         type="button"
-        data-name="Cloud Pocket Dragon"
-        data-price="$41"
-        data-desc="A fantasy-inspired plush idea that introduces a slightly more imaginative collectible tier while staying warm and approachable."
+        data-category="gift"
+        data-name="Elephant Pajama Gift Box"
+        data-price="$1099.99"
+        data-desc="A comforting elephant-themed gift box that combines a soft pajama set with a matching plush toy for a fuller Jellycat-inspired homewear experience."
+        data-image="image/elephantgift.png"
       >
-        <img src="image/zdc.png" alt="Cloud Pocket Dragon placeholder">
-        <span class="product-badge">Featured</span>
-        <h3>Cloud Pocket Dragon</h3>
-        <p>Dreamy, whimsical, and designed for attention-grabbing cards.</p>
+        <img src="image/elephantgift.png" alt="Elephant Pajama Gift Box">
+        <span class="product-badge">Gift Box</span>
+        <h3>Elephant Pajama Gift Box</h3>
+        <p>A soft elephant sleepwear set paired with a matching plush keepsake.</p>
         <div class="product-row">
-          <span class="product-price">$41</span>
+          <span class="product-price">$1099.99</span>
+          <span class="product-cta">View details</span>
+        </div>
+      </button>
+
+      <button
+        class="product-card"
+        type="button"
+        data-category="gift"
+        data-name="Bunny Pajama Gift Box"
+        data-price="$1099.99"
+        data-desc="A charming bunny gift set with one pajama outfit and a matching bunny plush, designed for sweet gifting moments and boutique display appeal."
+        data-image="image/bunnygift.png"
+      >
+        <img src="image/bunnygift.png" alt="Bunny Pajama Gift Box">
+        <span class="product-badge">Gift Box</span>
+        <h3>Bunny Pajama Gift Box</h3>
+        <p>Pairs a bunny pajama set with a matching plush for a sweet gift-ready set.</p>
+        <div class="product-row">
+          <span class="product-price">$1099.99</span>
+          <span class="product-cta">View details</span>
+        </div>
+      </button>
+
+      <button
+        class="product-card"
+        type="button"
+        data-category="gift"
+        data-name="Eggplant Pajama Gift Box"
+        data-price="$1099.99"
+        data-desc="A playful novelty gift box including an eggplant pajama set and its matching plush, bringing together comfort, humor, and collectible styling."
+        data-image="image/eggplantgift.png"
+      >
+        <img src="image/eggplantgift.png" alt="Eggplant Pajama Gift Box">
+        <span class="product-badge">Gift Box</span>
+        <h3>Eggplant Pajama Gift Box</h3>
+        <p>A bold gift bundle with matching eggplant pajamas and a character plush.</p>
+        <div class="product-row">
+          <span class="product-price">$1099.99</span>
+          <span class="product-cta">View details</span>
+        </div>
+      </button>
+
+      <button
+        class="product-card"
+        type="button"
+        data-category="bundle"
+        data-name="Couple Pajama Gift Box"
+        data-price="$1699.99"
+        data-desc="A romantic two-person gift set featuring matching couple pajamas and coordinated character styling, designed for cozy shared evenings and premium gifting."
+        data-image="image/couplegift.png"
+      >
+        <img src="image/couplegift.png" alt="Couple Pajama Gift Box">
+        <span class="product-badge">Couple Gift</span>
+        <h3>Couple Pajama Gift Box</h3>
+        <p>A matching two-person pajama gift set made for cozy nights and sweet shared moments.</p>
+        <div class="product-row">
+          <span class="product-price">$1699.99</span>
+          <span class="product-cta">View details</span>
+        </div>
+      </button>
+
+      <button
+        class="product-card"
+        type="button"
+        data-category="bundle"
+        data-name="Family Three-Piece Pajama Gift Box"
+        data-price="$1899.99"
+        data-desc="A family-focused three-person pajama gift box with coordinated styling for playful home moments, special occasions, and bundled value presentation."
+        data-image="image/familygift.png"
+      >
+        <img src="image/familygift.png" alt="Family Three-Piece Pajama Gift Box">
+        <span class="product-badge">Family Gift</span>
+        <h3>Family Three-Piece Pajama Gift Box</h3>
+        <p>A coordinated three-person pajama bundle for warm family gifting and matching homewear.</p>
+        <div class="product-row">
+          <span class="product-price">$1899.99</span>
           <span class="product-cta">View details</span>
         </div>
       </button>
@@ -540,7 +884,9 @@
   <div class="detail-sheet" id="detailSheet" aria-hidden="true">
     <section class="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detailName">
       <div class="sheet-handle"></div>
-      <img src="image/zdc.png" alt="Product detail placeholder">
+      <div class="detail-image">
+        <img src="image/zdc.png" alt="Product detail placeholder" id="detailImage">
+      </div>
       <div class="detail-top">
         <h3 id="detailName">Product Name</h3>
         <span class="detail-price" id="detailPrice">$00</span>
@@ -552,24 +898,105 @@
         <span>Mobile Preview</span>
       </div>
       <div class="detail-actions">
-        <button class="buy-btn" type="button">Add to cart</button>
+        <button class="buy-btn" type="button" id="addToCartBtn">Add to cart</button>
         <button class="close-btn" type="button" id="closeSheet" aria-label="Close detail">×</button>
       </div>
     </section>
   </div>
 
+  <div class="cart-sheet" id="cartSheet" aria-hidden="true">
+    <section class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="sheet-handle"></div>
+      <div class="cart-head">
+        <h3 id="cartTitle">Your Cart</h3>
+        <button class="close-btn" type="button" id="closeCart" aria-label="Close cart">×</button>
+      </div>
+      <div class="cart-list" id="cartList"></div>
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+    </section>
+  </div>
+
+  <button class="cart-fab" type="button" id="cartFab" aria-label="Open cart">
+    <div>
+      <strong id="cartCount">Cart • 0 items</strong>
+      <span>Tap to review your selected products</span>
+    </div>
+    <em id="cartFabTotal">$0.00</em>
+  </button>
+
   <script>
+    const featureStrip = document.getElementById("featureStrip");
     const sheet = document.getElementById("detailSheet");
+    const cartSheet = document.getElementById("cartSheet");
     const detailName = document.getElementById("detailName");
     const detailPrice = document.getElementById("detailPrice");
     const detailDesc = document.getElementById("detailDesc");
+    const detailImage = document.getElementById("detailImage");
+    const addToCartBtn = document.getElementById("addToCartBtn");
     const closeSheet = document.getElementById("closeSheet");
+    const closeCart = document.getElementById("closeCart");
+    const cartFab = document.getElementById("cartFab");
+    const cartList = document.getElementById("cartList");
+    const cartTotal = document.getElementById("cartTotal");
+    const cartFabTotal = document.getElementById("cartFabTotal");
+    const cartCount = document.getElementById("cartCount");
     const cards = document.querySelectorAll(".product-card");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const cartItems = [];
+    let currentCard = null;
+
+    if (featureStrip) {
+      featureStrip.innerHTML += featureStrip.innerHTML;
+
+      let autoScrollId = null;
+      let resumeTimerId = null;
+
+      function stepCarousel() {
+        featureStrip.scrollLeft += 0.35;
+
+        if (featureStrip.scrollLeft >= featureStrip.scrollWidth / 2) {
+          featureStrip.scrollLeft -= featureStrip.scrollWidth / 2;
+        }
+
+        autoScrollId = window.requestAnimationFrame(stepCarousel);
+      }
+
+      function startCarousel() {
+        if (!autoScrollId) {
+          autoScrollId = window.requestAnimationFrame(stepCarousel);
+        }
+      }
+
+      function stopCarousel() {
+        if (autoScrollId) {
+          window.cancelAnimationFrame(autoScrollId);
+          autoScrollId = null;
+        }
+      }
+
+      function pauseAndResume() {
+        window.clearTimeout(resumeTimerId);
+        stopCarousel();
+        resumeTimerId = window.setTimeout(startCarousel, 1200);
+      }
+
+      startCarousel();
+
+      featureStrip.addEventListener("pointerdown", pauseAndResume);
+      featureStrip.addEventListener("touchstart", pauseAndResume, { passive: true });
+      featureStrip.addEventListener("wheel", pauseAndResume, { passive: true });
+    }
 
     function openSheet(card) {
+      currentCard = card;
       detailName.textContent = card.dataset.name;
       detailPrice.textContent = card.dataset.price;
       detailDesc.textContent = card.dataset.desc;
+      detailImage.src = card.dataset.image;
+      detailImage.alt = card.dataset.name;
       sheet.classList.add("active");
       sheet.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -581,16 +1008,111 @@
       document.body.style.overflow = "";
     }
 
+    function parsePrice(priceText) {
+      return Number(priceText.replace(/[^0-9.]/g, ""));
+    }
+
+    function formatPrice(value) {
+      return `$${value.toFixed(2)}`;
+    }
+
+    function updateCartUi() {
+      const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+
+      cartCount.textContent = `Cart • ${cartItems.length} item${cartItems.length === 1 ? "" : "s"}`;
+      cartTotal.textContent = formatPrice(total);
+      cartFabTotal.textContent = formatPrice(total);
+
+      if (cartItems.length === 0) {
+        cartList.innerHTML = '<div class="cart-empty">Your cart is empty for now. Add a pajama set or gift box to start building the order.</div>';
+        return;
+      }
+
+      cartList.innerHTML = cartItems
+        .map((item, index) => `
+          <article class="cart-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div>
+              <strong>${item.name}</strong>
+              <span>${formatPrice(item.price)}</span>
+            </div>
+            <button type="button" data-remove-index="${index}" aria-label="Remove ${item.name}">×</button>
+          </article>
+        `)
+        .join("");
+
+      cartList.querySelectorAll("[data-remove-index]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const index = Number(button.dataset.removeIndex);
+          cartItems.splice(index, 1);
+          updateCartUi();
+        });
+      });
+    }
+
+    function openCart() {
+      cartSheet.classList.add("active");
+      cartSheet.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function hideCart() {
+      cartSheet.classList.remove("active");
+      cartSheet.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    function addCurrentItemToCart() {
+      if (!currentCard) {
+        return;
+      }
+
+      cartItems.push({
+        name: currentCard.dataset.name,
+        price: parsePrice(currentCard.dataset.price),
+        image: currentCard.dataset.image
+      });
+
+      updateCartUi();
+      hideSheet();
+      openCart();
+    }
+
+    function applyFilter(filter) {
+      cards.forEach((card) => {
+        const matches = filter === "all" || card.dataset.category === filter;
+        card.classList.toggle("hidden", !matches);
+      });
+
+      filterButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.filter === filter);
+      });
+    }
+
     cards.forEach((card) => {
       card.addEventListener("click", () => openSheet(card));
     });
 
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => applyFilter(button.dataset.filter));
+    });
+
+    addToCartBtn.addEventListener("click", addCurrentItemToCart);
     closeSheet.addEventListener("click", hideSheet);
+    closeCart.addEventListener("click", hideCart);
+    cartFab.addEventListener("click", openCart);
     sheet.addEventListener("click", (event) => {
       if (event.target === sheet) {
         hideSheet();
       }
     });
+    cartSheet.addEventListener("click", (event) => {
+      if (event.target === cartSheet) {
+        hideCart();
+      }
+    });
+
+    updateCartUi();
   </script>
 </body>
 </html>
