@@ -40,6 +40,415 @@
       min-height: 100vh;
     }
 
+    body.intro-active {
+      overflow: hidden;
+    }
+
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 225, 184, 0.9), transparent 22%),
+        radial-gradient(circle at 80% 22%, rgba(247, 204, 185, 0.85), transparent 24%),
+        radial-gradient(circle at 50% 84%, rgba(255, 241, 205, 0.9), transparent 22%),
+        linear-gradient(180deg, #fff8ef 0%, #fbeee1 100%);
+      z-index: 40;
+      overflow: hidden;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+
+    .intro-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-screen.loading .intro-enter-btn {
+      opacity: 0;
+      transform: translateY(10px) scale(0.92);
+      pointer-events: none;
+    }
+
+    .intro-screen.loading .intro-hint {
+      opacity: 0.4;
+    }
+
+    .intro-cloud,
+    .intro-star,
+    .intro-dot {
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .intro-cloud {
+      background: rgba(255, 255, 255, 0.65);
+      filter: blur(4px);
+      animation: floatCloud 7s ease-in-out infinite;
+    }
+
+    .intro-cloud.one {
+      width: 120px;
+      height: 56px;
+      top: 11%;
+      left: 8%;
+    }
+
+    .intro-cloud.two {
+      width: 92px;
+      height: 46px;
+      top: 18%;
+      right: 10%;
+      animation-delay: -2s;
+    }
+
+    .intro-dot {
+      background: rgba(239, 152, 113, 0.18);
+      animation: popDot 2.8s ease-in-out infinite;
+    }
+
+    .intro-dot.one {
+      width: 18px;
+      height: 18px;
+      left: 16%;
+      bottom: 22%;
+    }
+
+    .intro-dot.two {
+      width: 12px;
+      height: 12px;
+      right: 18%;
+      top: 34%;
+      animation-delay: -1.1s;
+    }
+
+    .intro-dot.three {
+      width: 22px;
+      height: 22px;
+      right: 26%;
+      bottom: 18%;
+      animation-delay: -1.8s;
+    }
+
+    .intro-star {
+      width: 16px;
+      height: 16px;
+      background: #ffd97a;
+      clip-path: polygon(50% 0%, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0% 50%, 39% 38%);
+      animation: twinkleStar 2s ease-in-out infinite;
+    }
+
+    .intro-star.one {
+      top: 24%;
+      left: 24%;
+    }
+
+    .intro-star.two {
+      top: 30%;
+      right: 21%;
+      animation-delay: -0.8s;
+    }
+
+    .intro-star.three {
+      bottom: 24%;
+      left: 28%;
+      animation-delay: -1.4s;
+    }
+
+    .intro-card {
+      position: relative;
+      width: min(100%, 340px);
+      padding: 28px 22px 26px;
+      border-radius: 34px;
+      text-align: center;
+      background: rgba(255, 252, 247, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.94);
+      box-shadow: 0 24px 54px rgba(114, 82, 62, 0.16);
+      backdrop-filter: blur(12px);
+      animation: introCardIn 0.9s cubic-bezier(.2,.8,.2,1) forwards;
+    }
+
+    .intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .intro-toy {
+      position: relative;
+      width: 132px;
+      height: 132px;
+      margin: 18px auto 14px;
+      border-radius: 38px;
+      background: linear-gradient(145deg, #ffe6d7, #fff1dc);
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.85), 0 16px 28px rgba(210, 142, 105, 0.2);
+      animation: toyBounce 1.8s ease-in-out infinite;
+    }
+
+    .intro-toy::before,
+    .intro-toy::after {
+      content: "";
+      position: absolute;
+      top: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #ffd4bf, #ffe9db);
+    }
+
+    .intro-toy::before {
+      left: 18px;
+      transform: rotate(-18deg);
+    }
+
+    .intro-toy::after {
+      right: 18px;
+      transform: rotate(18deg);
+    }
+
+    .intro-face {
+      position: absolute;
+      inset: 0;
+    }
+
+    .intro-eye {
+      position: absolute;
+      top: 54px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #5d4437;
+      animation: blinkEye 3.2s ease-in-out infinite;
+    }
+
+    .intro-eye.left {
+      left: 42px;
+    }
+
+    .intro-eye.right {
+      right: 42px;
+    }
+
+    .intro-smile {
+      position: absolute;
+      left: 50%;
+      bottom: 32px;
+      width: 34px;
+      height: 18px;
+      border-bottom: 4px solid #5d4437;
+      border-radius: 0 0 24px 24px;
+      transform: translateX(-50%);
+    }
+
+    .intro-card h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .intro-card p {
+      margin: 10px auto 0;
+      max-width: 250px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .intro-hint {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: opacity 0.35s ease;
+    }
+
+    .intro-enter-btn {
+      border: 0;
+      min-width: 190px;
+      min-height: 54px;
+      margin-top: 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), #ef9871);
+      color: #fffaf6;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: 0 16px 28px rgba(216, 111, 82, 0.28);
+      transition: transform 0.25s ease, opacity 0.35s ease;
+    }
+
+    .intro-enter-btn:active {
+      transform: scale(0.97);
+    }
+
+    .intro-loading {
+      width: 144px;
+      height: 8px;
+      margin: 18px auto 0;
+      border-radius: 999px;
+      background: rgba(216, 111, 82, 0.12);
+      overflow: hidden;
+    }
+
+    .intro-loading span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform: translateX(-100%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, #f3c8af, #d86f52, #f0b085);
+    }
+
+    .intro-screen.loading .intro-loading span {
+      animation: loadBar 1.65s ease forwards;
+    }
+
+    .site-content {
+      opacity: 0;
+      transform: scale(0.985);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    .site-content.ready {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .magic-item {
+      opacity: 0;
+      transform: translateY(38px) scale(0.94);
+      filter: blur(12px);
+    }
+
+    .site-content.ready .magic-item {
+      animation: magicFlyIn 0.95s cubic-bezier(.2,.8,.2,1) forwards;
+    }
+
+    .site-content.ready .magic-item:nth-child(1) {
+      animation-delay: 0.06s;
+    }
+
+    .site-content.ready .magic-item:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .site-content.ready .magic-item:nth-child(3) {
+      animation-delay: 0.34s;
+    }
+
+    .site-content.ready .magic-item:nth-child(4) {
+      animation-delay: 0.48s;
+    }
+
+    .site-content.ready .magic-item:nth-child(5) {
+      animation-delay: 0.62s;
+    }
+
+    @keyframes introCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.92);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes toyBounce {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(-2deg);
+      }
+    }
+
+    @keyframes loadBar {
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes floatCloud {
+      0%, 100% {
+        transform: translateX(0) translateY(0);
+      }
+
+      50% {
+        transform: translateX(8px) translateY(-6px);
+      }
+    }
+
+    @keyframes twinkleStar {
+      0%, 100% {
+        transform: scale(0.9) rotate(0deg);
+        opacity: 0.7;
+      }
+
+      50% {
+        transform: scale(1.2) rotate(8deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes popDot {
+      0%, 100% {
+        transform: scale(0.9);
+        opacity: 0.45;
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes blinkEye {
+      0%, 44%, 48%, 100% {
+        transform: scaleY(1);
+      }
+
+      46% {
+        transform: scaleY(0.15);
+      }
+    }
+
+    @keyframes magicFlyIn {
+      0% {
+        opacity: 0;
+        transform: translateY(38px) scale(0.94) rotate(-2deg);
+        filter: blur(12px);
+      }
+
+      60% {
+        opacity: 1;
+        transform: translateY(-8px) scale(1.02) rotate(1deg);
+        filter: blur(0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+        filter: blur(0);
+      }
+    }
+
     .phone-shell {
       width: min(100vw, 430px);
       min-height: 100vh;
@@ -115,15 +524,41 @@
     .hero-image {
       margin-top: 22px;
       position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      box-shadow: 0 18px 36px rgba(119, 83, 57, 0.18);
     }
 
-    .hero-image img {
+    .hero-slider {
+      display: flex;
+      width: 200%;
+      animation: heroSlide 8s ease-in-out infinite;
+    }
+
+    .hero-slide {
+      width: 50%;
+      flex: 0 0 50%;
+    }
+
+    .hero-slide img {
       display: block;
       width: 100%;
       height: 540px;
       object-fit: cover;
-      border-radius: 26px;
-      box-shadow: 0 18px 36px rgba(119, 83, 57, 0.18);
+    }
+
+    @keyframes heroSlide {
+      0%, 38% {
+        transform: translateX(0);
+      }
+
+      50%, 88% {
+        transform: translateX(-50%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
     }
 
     .floating-note {
@@ -375,10 +810,36 @@
   </style>
 </head>
 <body>
-  <main class="phone-shell">
-    <span class="top-badge">Official flagship simulation</span>
+  <div class="intro-screen" id="introScreen" aria-hidden="true">
+    <div class="intro-cloud one"></div>
+    <div class="intro-cloud two"></div>
+    <div class="intro-star one"></div>
+    <div class="intro-star two"></div>
+    <div class="intro-star three"></div>
+    <div class="intro-dot one"></div>
+    <div class="intro-dot two"></div>
+    <div class="intro-dot three"></div>
+    <section class="intro-card">
+      <span class="intro-badge">Scan to enter</span>
+      <div class="intro-toy">
+        <div class="intro-face">
+          <span class="intro-eye left"></span>
+          <span class="intro-eye right"></span>
+          <span class="intro-smile"></span>
+        </div>
+      </div>
+      <h1>Hello, Jellycat.</h1>
+      <p>A tiny soft-world is waiting for you. Tap the button and let the flagship story bloom like magic.</p>
+      <span class="intro-hint">Press anywhere to enter</span>
+      <button class="intro-enter-btn" type="button" id="introEnterBtn">Enter the Soft World</button>
+      <div class="intro-loading"><span></span></div>
+    </section>
+  </div>
 
-    <section class="hero">
+  <main class="phone-shell site-content" id="siteContent">
+    <span class="top-badge magic-item">Official flagship simulation</span>
+
+    <section class="hero magic-item">
       <div class="hero-copy">
         <span class="top-badge">MKTG2501 Group Group</span>
         <h1>Meet the softest corner of Jellycat.</h1>
@@ -389,7 +850,14 @@
       </div>
 
       <div class="hero-image">
-        <img src="image/Jellycat.png" alt="Jellycat featured visual placeholder">
+        <div class="hero-slider" aria-label="Featured visuals">
+          <div class="hero-slide">
+            <img src="image/optimized/kim.jpg" alt="Jellycat featured visual placeholder" decoding="async">
+          </div>
+          <div class="hero-slide">
+            <img src="image/optimized/Jellycat.jpg" alt="Jellycat featured visual placeholder" loading="lazy" decoding="async">
+          </div>
+        </div>
         <div class="floating-note">
           New Season Edit
           <strong>Jellycat Flagship</strong>
@@ -402,14 +870,14 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section magic-item">
       <div class="section-head">
         <h2>Editorial Worlds</h2>
         <span>Slow auto carousel</span>
       </div>
       <div class="feature-strip" id="featureStrip" aria-label="Editorial categories">
         <a class="feature-card" href="shop.html">
-          <img src="image/whitePuppy.jpg" alt="Classic plush collection placeholder">
+          <img src="image/whitePuppy.jpg" alt="Classic plush collection placeholder" loading="lazy" decoding="async">
           <div class="feature-copy">
             <span>Iconic Picks</span>
             <h3>Classic Plush Toys</h3>
@@ -417,7 +885,7 @@
           </div>
         </a>
         <a class="feature-card" href="shop.html">
-          <img src="image/adultPajama.jpg" alt="Adult pajama collection placeholder">
+          <img src="image/adultPajama.jpg" alt="Adult pajama collection placeholder" loading="lazy" decoding="async">
           <div class="feature-copy">
             <span>Soft Living</span>
             <h3>Adult Sleepwear</h3>
@@ -425,7 +893,7 @@
           </div>
         </a>
         <a class="feature-card" href="shop.html">
-          <img src="image/parent.jpg" alt="Parent and child collection placeholder">
+          <img src="image/parent.jpg" alt="Parent and child collection placeholder" loading="lazy" decoding="async">
           <div class="feature-copy">
             <span>Family Edit</span>
             <h3>Parent & Child World</h3>
@@ -433,7 +901,7 @@
           </div>
         </a>
         <a class="feature-card" href="shop.html">
-          <img src="image/couple.png" alt="Couple collection placeholder">
+          <img src="image/optimized/couple.jpg" alt="Couple collection placeholder" loading="lazy" decoding="async">
           <div class="feature-copy">
             <span>Gift Studio</span>
             <h3>Couples Corner</h3>
@@ -443,32 +911,32 @@
       </div>
     </section>
 
-    <section class="section" id="preview">
+    <section class="section magic-item" id="preview">
       <div class="section-head">
         <h2>Popular Preview</h2>
         <span>Swipe-worthy picks</span>
       </div>
       <div class="preview-grid">
         <a class="preview-card" href="shop.html">
-          <img src="image/penguin.png" alt="Preview product placeholder">
+          <img src="image/optimized/penguin.jpg" alt="Preview product placeholder" loading="lazy" decoding="async">
           <h3>Adorable Penguin Adult Pajamas</h3>
           <p>Playful penguin prints with a soft, cozy fit for relaxed nights in.</p>
           <strong>$799.99</strong>
         </a>
         <a class="preview-card" href="shop.html">
-          <img src="image/bear.png" alt="Preview product placeholder">
+          <img src="image/optimized/bear.jpg" alt="Preview product placeholder" loading="lazy" decoding="async">
           <h3>Bear Adult Pajamas</h3>
           <p>Warm bear-inspired loungewear designed for comfort and a cute home mood.</p>
           <strong>$799.99</strong>
         </a>
         <a class="preview-card" href="shop.html">
-          <img src="image/couple2.png" alt="Preview product placeholder">
+          <img src="image/optimized/couple2.jpg" alt="Preview product placeholder" loading="lazy" decoding="async">
           <h3>Couple Pajama Gift Box</h3>
           <p>Mix-and-match couple sleepwear in a ready-to-gift set for shared cozy moments.</p>
           <strong>$1499.99</strong>
         </a>
         <a class="preview-card" href="shop.html">
-          <img src="image/family.png" alt="Preview product placeholder">
+          <img src="image/optimized/family.jpg" alt="Preview product placeholder" loading="lazy" decoding="async">
           <h3>Parent-Child Family Value Set</h3>
           <p>A family bundle with matching styles, made for easy gifting and playful home time.</p>
           <strong>$1999.99</strong>
@@ -476,7 +944,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section magic-item">
       <div class="section-head">
         <h2>Store Story</h2>
         <span>Inspired by the real brand</span>
@@ -507,7 +975,50 @@
     </section>
   </main>
   <script>
+    const introScreen = document.getElementById("introScreen");
+    const introEnterBtn = document.getElementById("introEnterBtn");
+    const siteContent = document.getElementById("siteContent");
     const featureStrip = document.getElementById("featureStrip");
+    let introStarted = false;
+
+    document.body.classList.add("intro-active");
+
+    function finishIntro() {
+      if (introScreen) {
+        introScreen.classList.add("hidden");
+      }
+
+      if (siteContent) {
+        siteContent.classList.add("ready");
+      }
+
+      document.body.classList.remove("intro-active");
+    }
+
+    function startIntro() {
+      if (introStarted) {
+        return;
+      }
+
+      introStarted = true;
+
+      if (introScreen) {
+        introScreen.classList.add("loading");
+      }
+
+      window.setTimeout(finishIntro, 1700);
+    }
+
+    if (introEnterBtn) {
+      introEnterBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        startIntro();
+      });
+    }
+
+    if (introScreen) {
+      introScreen.addEventListener("click", startIntro);
+    }
 
     if (featureStrip) {
       featureStrip.innerHTML += featureStrip.innerHTML;

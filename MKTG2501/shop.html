@@ -355,6 +355,21 @@
       display: flex;
     }
 
+    .success-sheet {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(34, 23, 18, 0.42);
+      z-index: 30;
+    }
+
+    .success-sheet.active {
+      display: flex;
+    }
+
     .detail-panel {
       width: min(100vw, 430px);
       border-radius: 28px 28px 0 0;
@@ -613,6 +628,78 @@
       font-size: 13px;
       font-weight: 700;
     }
+
+    .checkout-btn {
+      width: 100%;
+      border: 0;
+      margin-top: 14px;
+      min-height: 54px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), #e59373);
+      color: #fff8f3;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: 0 14px 26px rgba(216, 111, 82, 0.22);
+    }
+
+    .checkout-btn:disabled {
+      background: #dcc9bb;
+      color: rgba(255, 248, 243, 0.85);
+      box-shadow: none;
+    }
+
+    .success-panel {
+      width: min(100%, 360px);
+      padding: 22px 20px 20px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #fffaf5 0%, #f8eee5 100%);
+      box-shadow: 0 20px 44px rgba(44, 31, 24, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 14px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      background: linear-gradient(135deg, #f7d7c8, #f3e7d6);
+      color: var(--accent-deep);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .success-panel h3 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.03em;
+    }
+
+    .success-panel p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .success-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .success-btn {
+      border: 0;
+      min-height: 52px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), #e59373);
+      color: #fff8f3;
+      font-size: 14px;
+      font-weight: 800;
+    }
   </style>
 </head>
 <body>
@@ -637,7 +724,7 @@
 
       <section class="feature-strip" id="featureStrip" aria-label="Editorial categories">
         <a class="feature-card" href="shop.html">
-          <img src="image/penguin.png" alt="Classic plush collection placeholder">
+          <img src="image/optimized/penguin.jpg" alt="Classic plush collection placeholder" loading="lazy" decoding="async">
           <div class="feature-copy">
             <span>Iconic Picks</span>
             <h3>Classic Plush Toys</h3>
@@ -645,7 +732,7 @@
           </div>
         </a>
         <a class="feature-card" href="shop.html">
-          <img src="image/bear.png" alt="Adult pajama collection placeholder">
+          <img src="image/optimized/bear.jpg" alt="Adult pajama collection placeholder" loading="lazy" decoding="async">
           <div class="feature-copy">
             <span>Soft Living</span>
             <h3>Adult Sleepwear</h3>
@@ -653,7 +740,7 @@
           </div>
         </a>
         <a class="feature-card" href="shop.html">
-          <img src="image/couple2.png" alt="Parent and child collection placeholder">
+          <img src="image/optimized/couple2.jpg" alt="Parent and child collection placeholder" loading="lazy" decoding="async">
           <div class="feature-copy">
             <span>Family Edit</span>
             <h3>Parent & Child World</h3>
@@ -661,7 +748,7 @@
           </div>
         </a>
         <a class="feature-card" href="shop.html">
-          <img src="image/family.png" alt="Couple collection placeholder">
+          <img src="image/optimized/family.jpg" alt="Couple collection placeholder" loading="lazy" decoding="async">
           <div class="feature-copy">
             <span>Gift Studio</span>
             <h3>Couples Corner</h3>
@@ -696,9 +783,9 @@
         data-name="Penguin Adult Pajama Set"
         data-price="$799.99"
         data-desc="A cozy adult pajama set with playful penguin artwork, brushed-soft fabric, and an easy relaxed fit made for warm winter nights and cute at-home photos."
-        data-image="image/penguin.png"
+        data-image="image/optimized/penguin.jpg"
       >
-        <img src="image/penguin.png" alt="Penguin Adult Pajama Set">
+        <img src="image/optimized/penguin.jpg" alt="Penguin Adult Pajama Set" loading="lazy" decoding="async">
         <span class="product-badge">Adult Pajamas</span>
         <h3>Penguin Adult Pajama Set</h3>
         <p>Soft-touch loungewear with cheerful penguin details for a playful bedtime mood.</p>
@@ -715,9 +802,9 @@
         data-name="Fox Adult Pajama Set"
         data-price="$799.99"
         data-desc="A warm fox-themed pajama set designed with gentle colors, breathable comfort, and a charming woodland feel for everyday lounging."
-        data-image="image/fox.png"
+        data-image="image/optimized/fox.jpg"
       >
-        <img src="image/fox.png" alt="Fox Adult Pajama Set">
+        <img src="image/optimized/fox.jpg" alt="Fox Adult Pajama Set" loading="lazy" decoding="async">
         <span class="product-badge">Adult Pajamas</span>
         <h3>Fox Adult Pajama Set</h3>
         <p>Woodland-inspired sleepwear with a snug feel and a softly playful character look.</p>
@@ -734,9 +821,9 @@
         data-name="Eggplant Adult Pajama Set"
         data-price="$799.99"
         data-desc="A whimsical adult pajama set featuring a fun eggplant motif, smooth cozy fabric, and a standout novelty style that still feels premium."
-        data-image="image/eggplant.png"
+        data-image="image/optimized/eggplant.jpg"
       >
-        <img src="image/eggplant.png" alt="Eggplant Adult Pajama Set">
+        <img src="image/optimized/eggplant.jpg" alt="Eggplant Adult Pajama Set" loading="lazy" decoding="async">
         <span class="product-badge">Adult Pajamas</span>
         <h3>Eggplant Adult Pajama Set</h3>
         <p>Quirky character sleepwear that adds humor, comfort, and a bold homewear vibe.</p>
@@ -753,9 +840,9 @@
         data-name="Bear Adult Pajama Set"
         data-price="$799.99"
         data-desc="A classic bear-inspired pajama set with plush visual styling, a comforting relaxed silhouette, and a giftable cozy finish."
-        data-image="image/bear.png"
+        data-image="image/optimized/bear.jpg"
       >
-        <img src="image/bear.png" alt="Bear Adult Pajama Set">
+        <img src="image/optimized/bear.jpg" alt="Bear Adult Pajama Set" loading="lazy" decoding="async">
         <span class="product-badge">Adult Pajamas</span>
         <h3>Bear Adult Pajama Set</h3>
         <p>Classic cozy sleepwear with sweet bear graphics and an easy premium lounge fit.</p>
@@ -772,9 +859,9 @@
         data-name="Penguin Pajama Gift Box"
         data-price="$1099.99"
         data-desc="A premium gift set featuring one adult penguin pajama set and a matching penguin plush companion, curated for cozy gifting and collectible charm."
-        data-image="image/penguingift.png"
+        data-image="image/optimized/penguingift.jpg"
       >
-        <img src="image/penguingift.png" alt="Penguin Pajama Gift Box">
+        <img src="image/optimized/penguingift.jpg" alt="Penguin Pajama Gift Box" loading="lazy" decoding="async">
         <span class="product-badge">Gift Box</span>
         <h3>Penguin Pajama Gift Box</h3>
         <p>Includes a penguin pajama set and matching plush in one ready-to-gift bundle.</p>
@@ -791,9 +878,9 @@
         data-name="Elephant Pajama Gift Box"
         data-price="$1099.99"
         data-desc="A comforting elephant-themed gift box that combines a soft pajama set with a matching plush toy for a fuller Jellycat-inspired homewear experience."
-        data-image="image/elephantgift.png"
+        data-image="image/optimized/elephantgift.jpg"
       >
-        <img src="image/elephantgift.png" alt="Elephant Pajama Gift Box">
+        <img src="image/optimized/elephantgift.jpg" alt="Elephant Pajama Gift Box" loading="lazy" decoding="async">
         <span class="product-badge">Gift Box</span>
         <h3>Elephant Pajama Gift Box</h3>
         <p>A soft elephant sleepwear set paired with a matching plush keepsake.</p>
@@ -810,9 +897,9 @@
         data-name="Bunny Pajama Gift Box"
         data-price="$1099.99"
         data-desc="A charming bunny gift set with one pajama outfit and a matching bunny plush, designed for sweet gifting moments and boutique display appeal."
-        data-image="image/bunnygift.png"
+        data-image="image/optimized/bunnygift.jpg"
       >
-        <img src="image/bunnygift.png" alt="Bunny Pajama Gift Box">
+        <img src="image/optimized/bunnygift.jpg" alt="Bunny Pajama Gift Box" loading="lazy" decoding="async">
         <span class="product-badge">Gift Box</span>
         <h3>Bunny Pajama Gift Box</h3>
         <p>Pairs a bunny pajama set with a matching plush for a sweet gift-ready set.</p>
@@ -829,9 +916,9 @@
         data-name="Eggplant Pajama Gift Box"
         data-price="$1099.99"
         data-desc="A playful novelty gift box including an eggplant pajama set and its matching plush, bringing together comfort, humor, and collectible styling."
-        data-image="image/eggplantgift.png"
+        data-image="image/optimized/eggplantgift.jpg"
       >
-        <img src="image/eggplantgift.png" alt="Eggplant Pajama Gift Box">
+        <img src="image/optimized/eggplantgift.jpg" alt="Eggplant Pajama Gift Box" loading="lazy" decoding="async">
         <span class="product-badge">Gift Box</span>
         <h3>Eggplant Pajama Gift Box</h3>
         <p>A bold gift bundle with matching eggplant pajamas and a character plush.</p>
@@ -848,9 +935,9 @@
         data-name="Couple Pajama Gift Box"
         data-price="$1699.99"
         data-desc="A romantic two-person gift set featuring matching couple pajamas and coordinated character styling, designed for cozy shared evenings and premium gifting."
-        data-image="image/couplegift.png"
+        data-image="image/optimized/couplegift.jpg"
       >
-        <img src="image/couplegift.png" alt="Couple Pajama Gift Box">
+        <img src="image/optimized/couplegift.jpg" alt="Couple Pajama Gift Box" loading="lazy" decoding="async">
         <span class="product-badge">Couple Gift</span>
         <h3>Couple Pajama Gift Box</h3>
         <p>A matching two-person pajama gift set made for cozy nights and sweet shared moments.</p>
@@ -867,9 +954,9 @@
         data-name="Family Three-Piece Pajama Gift Box"
         data-price="$1899.99"
         data-desc="A family-focused three-person pajama gift box with coordinated styling for playful home moments, special occasions, and bundled value presentation."
-        data-image="image/familygift.png"
+        data-image="image/optimized/familygift.jpg"
       >
-        <img src="image/familygift.png" alt="Family Three-Piece Pajama Gift Box">
+        <img src="image/optimized/familygift.jpg" alt="Family Three-Piece Pajama Gift Box" loading="lazy" decoding="async">
         <span class="product-badge">Family Gift</span>
         <h3>Family Three-Piece Pajama Gift Box</h3>
         <p>A coordinated three-person pajama bundle for warm family gifting and matching homewear.</p>
@@ -916,6 +1003,7 @@
         <span>Total</span>
         <strong id="cartTotal">$0.00</strong>
       </div>
+      <button class="checkout-btn" type="button" id="checkoutBtn">Checkout</button>
     </section>
   </div>
 
@@ -927,10 +1015,26 @@
     <em id="cartFabTotal">$0.00</em>
   </button>
 
+  <div class="success-sheet" id="successSheet" aria-hidden="true">
+    <section class="success-panel" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+      <div class="success-icon">✓</div>
+      <h3 id="successTitle">Thank You</h3>
+      <p>
+        Thanks for your shopping. If you like our product, Please contact
+        Jellycat and vote for us.
+      </p>
+      <div class="success-actions">
+        <button class="success-btn" type="button" id="successOk">Continue</button>
+        <button class="close-btn" type="button" id="closeSuccess" aria-label="Close success message">×</button>
+      </div>
+    </section>
+  </div>
+
   <script>
     const featureStrip = document.getElementById("featureStrip");
     const sheet = document.getElementById("detailSheet");
     const cartSheet = document.getElementById("cartSheet");
+    const successSheet = document.getElementById("successSheet");
     const detailName = document.getElementById("detailName");
     const detailPrice = document.getElementById("detailPrice");
     const detailDesc = document.getElementById("detailDesc");
@@ -943,6 +1047,9 @@
     const cartTotal = document.getElementById("cartTotal");
     const cartFabTotal = document.getElementById("cartFabTotal");
     const cartCount = document.getElementById("cartCount");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const closeSuccess = document.getElementById("closeSuccess");
+    const successOk = document.getElementById("successOk");
     const cards = document.querySelectorAll(".product-card");
     const filterButtons = document.querySelectorAll(".filter-btn");
     const cartItems = [];
@@ -1022,6 +1129,7 @@
       cartCount.textContent = `Cart • ${cartItems.length} item${cartItems.length === 1 ? "" : "s"}`;
       cartTotal.textContent = formatPrice(total);
       cartFabTotal.textContent = formatPrice(total);
+      checkoutBtn.disabled = cartItems.length === 0;
 
       if (cartItems.length === 0) {
         cartList.innerHTML = '<div class="cart-empty">Your cart is empty for now. Add a pajama set or gift box to start building the order.</div>';
@@ -1062,6 +1170,18 @@
       document.body.style.overflow = "";
     }
 
+    function openSuccess() {
+      successSheet.classList.add("active");
+      successSheet.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function hideSuccess() {
+      successSheet.classList.remove("active");
+      successSheet.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
     function addCurrentItemToCart() {
       if (!currentCard) {
         return;
@@ -1089,6 +1209,15 @@
       });
     }
 
+    function handleCheckout() {
+      if (cartItems.length === 0) {
+        return;
+      }
+
+      hideCart();
+      openSuccess();
+    }
+
     cards.forEach((card) => {
       card.addEventListener("click", () => openSheet(card));
     });
@@ -1101,6 +1230,9 @@
     closeSheet.addEventListener("click", hideSheet);
     closeCart.addEventListener("click", hideCart);
     cartFab.addEventListener("click", openCart);
+    checkoutBtn.addEventListener("click", handleCheckout);
+    closeSuccess.addEventListener("click", hideSuccess);
+    successOk.addEventListener("click", hideSuccess);
     sheet.addEventListener("click", (event) => {
       if (event.target === sheet) {
         hideSheet();
@@ -1109,6 +1241,11 @@
     cartSheet.addEventListener("click", (event) => {
       if (event.target === cartSheet) {
         hideCart();
+      }
+    });
+    successSheet.addEventListener("click", (event) => {
+      if (event.target === successSheet) {
+        hideSuccess();
       }
     });
 
