@@ -357,6 +357,84 @@
       animation-delay: 0.62s;
     }
 
+    .bear-greeter {
+      position: fixed;
+      right: -18px;
+      top: 58%;
+      z-index: 22;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(-50%);
+      transition: transform 0.45s ease, opacity 0.45s ease;
+    }
+
+    .bear-greeter.hidden {
+      opacity: 0;
+      transform: translate(120px, -50%) rotate(10deg);
+      pointer-events: none;
+    }
+
+    .bear-bubble {
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: rgba(255, 251, 246, 0.92);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      box-shadow: 0 10px 24px rgba(104, 72, 52, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.96);
+      opacity: 0;
+      transform: translateX(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .bear-greeter.greeting .bear-bubble {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .bear-button {
+      position: relative;
+      width: 94px;
+      height: 94px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      transform: translateX(0);
+    }
+
+    .bear-button img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 12px 18px rgba(104, 72, 52, 0.18));
+    }
+
+    .bear-button::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 20px;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px 999px 0 999px;
+      background: #ffd97a;
+      opacity: 0;
+      transform: scale(0.5) rotate(20deg);
+    }
+
+    .bear-greeter.greeting .bear-button {
+      animation: bearWave 1.2s ease;
+    }
+
+    .bear-greeter.greeting .bear-button::after {
+      animation: helloSpark 1.2s ease;
+    }
+
     @keyframes introCardIn {
       from {
         opacity: 0;
@@ -446,6 +524,45 @@
         opacity: 1;
         transform: translateY(0) scale(1) rotate(0deg);
         filter: blur(0);
+      }
+    }
+
+    @keyframes bearWave {
+      0%, 100% {
+        transform: translateX(0) rotate(0deg);
+      }
+
+      20% {
+        transform: translateX(-6px) rotate(-5deg);
+      }
+
+      40% {
+        transform: translateX(-2px) rotate(4deg);
+      }
+
+      60% {
+        transform: translateX(-7px) rotate(-4deg);
+      }
+
+      80% {
+        transform: translateX(-2px) rotate(3deg);
+      }
+    }
+
+    @keyframes helloSpark {
+      0% {
+        opacity: 0;
+        transform: scale(0.4) rotate(10deg);
+      }
+
+      30% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.3) rotate(-12deg);
       }
     }
 
@@ -974,12 +1091,25 @@
       </div>
     </section>
   </main>
+
+  <div class="bear-greeter" id="bearGreeter" aria-live="polite">
+    <div class="bear-bubble">Hi there!</div>
+    <button class="bear-button" type="button" id="bearButton" aria-label="Say hello to the bear">
+      <img src="image/greeter.png" alt="Friendly bear greeter" loading="lazy" decoding="async">
+    </button>
+  </div>
+
   <script>
     const introScreen = document.getElementById("introScreen");
     const introEnterBtn = document.getElementById("introEnterBtn");
     const siteContent = document.getElementById("siteContent");
     const featureStrip = document.getElementById("featureStrip");
+    const bearGreeter = document.getElementById("bearGreeter");
+    const bearButton = document.getElementById("bearButton");
     let introStarted = false;
+    let bearGreetingInterval = null;
+    let bearGreetingTimeout = null;
+    let bearReturnTimeout = null;
 
     document.body.classList.add("intro-active");
 
@@ -1060,6 +1190,60 @@
       featureStrip.addEventListener("pointerdown", pauseAndResume);
       featureStrip.addEventListener("touchstart", pauseAndResume, { passive: true });
       featureStrip.addEventListener("wheel", pauseAndResume, { passive: true });
+    }
+
+    function stopBearGreeting() {
+      if (bearGreetingTimeout) {
+        window.clearTimeout(bearGreetingTimeout);
+        bearGreetingTimeout = null;
+      }
+
+      if (bearGreeter) {
+        bearGreeter.classList.remove("greeting");
+      }
+    }
+
+    function triggerBearGreeting() {
+      if (!bearGreeter || bearGreeter.classList.contains("hidden")) {
+        return;
+      }
+
+      stopBearGreeting();
+      bearGreeter.classList.add("greeting");
+      bearGreetingTimeout = window.setTimeout(() => {
+        bearGreeter.classList.remove("greeting");
+      }, 1400);
+    }
+
+    function startBearLoop() {
+      if (!bearGreeter) {
+        return;
+      }
+
+      if (bearGreetingInterval) {
+        window.clearInterval(bearGreetingInterval);
+      }
+
+      bearGreetingInterval = window.setInterval(triggerBearGreeting, 4200);
+      window.setTimeout(triggerBearGreeting, 1800);
+    }
+
+    if (bearButton && bearGreeter) {
+      startBearLoop();
+
+      bearButton.addEventListener("click", () => {
+        stopBearGreeting();
+        bearGreeter.classList.add("hidden");
+
+        if (bearReturnTimeout) {
+          window.clearTimeout(bearReturnTimeout);
+        }
+
+        bearReturnTimeout = window.setTimeout(() => {
+          bearGreeter.classList.remove("hidden");
+          triggerBearGreeting();
+        }, 5200);
+      });
     }
   </script>
 </body>
