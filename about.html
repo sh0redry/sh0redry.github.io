@@ -287,6 +287,36 @@
             font-size: 0.85rem;
             color: var(--text-muted);
         }
+        .project-detail {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            line-height: 1.65;
+        }
+        .project-points {
+            margin: 10px 0 0;
+            padding-left: 18px;
+            color: var(--text-muted);
+            font-size: 0.84rem;
+            line-height: 1.65;
+        }
+        .project-points li { margin-bottom: 5px; }
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .project-stack span {
+            display: inline-flex;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #ecfdf5;
+            border: 1px solid #bbf7d0;
+            color: #047857;
+            font-size: 0.74rem;
+            font-weight: 600;
+        }
 
         /* ── Responsive ── */
         @media (max-width: 640px) {
@@ -479,25 +509,62 @@ Visited a range of public and private fund companies, engaging in exchanges and 
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
                             <div class="timeline-title">Web3.0 Quantitative Trading Bot (HackerU Trading)</div>
-                            <div class="timeline-sub">Lead Strategy Developer &amp; Feature Engineering</div>
-                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; line-height: 1.6;">
-                                Developed automated data fetching via APIs and built machine learning features driven by order flow. Built a dual-model ensemble strategy using LightGBM and XGBoost with dynamic position management, achieving up to 1% ROI in 10-day backtests.
+                            <div class="timeline-sub">Lead Strategy Developer &amp; Data Feature Engineering</div>
+                            <div class="project-detail">
+                                Built an automated API-based data ingestion pipeline and an order-flow-driven feature engineering module for high- and medium-frequency quantitative strategies.
+                            </div>
+                            <ul class="project-points">
+                                <li>Engineered OHLCV and aggressive buy/sell volume features, including active buy-sell ratio, order-flow imbalance, rolling net aggressive buying, volume intensity, VWAP deviation, order-flow acceleration, return Z-score, and wick extreme ratio.</li>
+                                <li>Implemented rolling-window alignment and future-data isolation to reduce look-ahead bias across training and backtesting.</li>
+                                <li>Built a LightGBM + XGBoost ensemble with a multi-layer trading funnel: meme/L1/AI sector constraints, BTC trend switch, RSI overheating filter, ATR volatility threshold, Edge ranking, losing-streak cooldown, and gap handling.</li>
+                                <li>Designed dynamic position management with ATR-adaptive take-profit/stop-loss rules (2.0-2.8x ATR) and a 12-bar maximum holding period. Historical data was pulled concurrently, cached, and used for daily rolling retraining; 10-day backtests reached up to 1% ROI.</li>
+                            </ul>
+                            <div class="project-stack">
+                                <span>Python</span><span>NumPy</span><span>Pandas</span><span>scikit-learn</span><span>LightGBM</span><span>XGBoost</span>
                             </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
                             <div class="timeline-title">Trading Visualization Platform</div>
                             <div class="timeline-sub">Personal Project</div>
-                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; line-height: 1.6;">
-                                Built a full ML evaluation pipeline covering data cleaning, feature construction, signal generation, and multi-model training/comparison. Developed QuantModel Evaluator for batch evaluation of sklearn-style models.
+                            <div class="project-detail">
+                                Created an end-to-end machine learning evaluation pipeline for market data, covering data cleaning, alpha feature construction, signal generation, model training, and performance comparison under strict time-series splitting.
+                            </div>
+                            <ul class="project-points">
+                                <li>Automated classic price-volume factor generation across six core groups, including short/long momentum, volatility, moving-average deviation, and volume momentum, using rolling windows and <code>pct_change</code> with NaN handling.</li>
+                                <li>Designed a chainable Alpha signal generator for custom factors such as price-volume bearish divergence and intraday range features.</li>
+                                <li>Developed <code>QuantModelEvaluator</code> to register and batch-evaluate sklearn-style models, including Logistic Regression, Random Forest, and XGBoost, with sortable accuracy and precision comparison tables plus visual model-selection outputs.</li>
+                            </ul>
+                            <div class="project-stack">
+                                <span>Python</span><span>Pandas</span><span>scikit-learn</span><span>XGBoost</span><span>Visualization</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
+                            <div class="timeline-title">Web3.0 Stock Hedge Insurance Protocol</div>
+                            <div class="timeline-sub">Smart Contract Development &amp; Risk Pricing System Design</div>
+                            <div class="project-detail">
+                                Designed and implemented a Solidity-based stock price insurance protocol where users purchase upside or downside protection for US/HK stocks with MockUSDC, while LPs provide stablecoin underwriting liquidity.
+                            </div>
+                            <ul class="project-points">
+                                <li>Developed core contracts including <code>PolicyFactory</code>, <code>InsuranceVault</code>, <code>PricingOracle</code>, <code>ChainlinkOracleAdapter</code>, and an automated settlement module.</li>
+                                <li>Implemented policy purchase, cancellation, expiry settlement, LP share accounting, premium revenue, payout statistics, multi-asset whitelisting, market-hour restrictions, and Hong Kong market lunch-break handling.</li>
+                                <li>Built an on-chain lightweight pricing model using volatility, direction, duration, trigger distance, pool utilization, and risk score.</li>
+                                <li>Added multi-layer risk controls such as per-symbol underwriting caps, directional exposure limits, tenor limits, minimum liquidity buffers, oracle fallback checks, and pause controls. Used OpenZeppelin <code>AccessControl</code>, <code>Pausable</code>, <code>ReentrancyGuard</code>, and <code>SafeERC20</code>; completed unit, integration, fuzz, and stress tests with all Hardhat tests passing.</li>
+                            </ul>
+                            <div class="project-stack">
+                                <span>Solidity</span><span>Hardhat</span><span>OpenZeppelin</span><span>Chainlink</span><span>DeFi</span>
                             </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
                             <div class="timeline-title">C++ Game Development</div>
                             <div class="timeline-sub">Lead Developer (Course Project)</div>
-                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; line-height: 1.6;">
+                            <div class="project-detail">
                                 Designed and implemented the core combat module of a survivor game, including player controls, dynamic zombie generation, collision detection, and console-based UI rendering.
+                            </div>
+                            <div class="project-stack">
+                                <span>C++</span><span>Game Logic</span><span>Console UI</span>
                             </div>
                         </div>
                     </div>
