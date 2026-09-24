@@ -317,6 +317,17 @@
             font-size: 0.74rem;
             font-weight: 600;
         }
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 12px;
+            color: var(--primary);
+            font-size: 0.84rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .project-link:hover { text-decoration: underline; }
+        .project-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
 
         /* ── Responsive ── */
         @media (max-width: 640px) {
@@ -528,6 +539,7 @@
                             <div class="project-stack">
                                 <span>Python</span><span>LightGBM</span><span>scikit-learn</span><span>SHAP</span><span>GeoPandas</span><span>AWS S3</span><span>Redshift</span>
                             </div>
+                            <a class="project-link" href="https://github.com/sh0redry/weeviltrak-forecasting-research" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看 WeevilTrack 仓库">查看 GitHub 仓库 ↗</a>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
@@ -545,22 +557,24 @@
                             <div class="project-stack">
                                 <span>Python</span><span>NumPy</span><span>Pandas</span><span>scikit-learn</span><span>LightGBM</span><span>XGBoost</span>
                             </div>
+                            <a class="project-link" href="https://github.com/srbisupermeni/HacKerU-trading" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看 HackerU Trading 仓库">查看 GitHub 仓库 ↗</a>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
-                            <div class="timeline-title">交易可视化平台</div>
-                            <div class="timeline-sub">个人项目</div>
+                            <div class="timeline-title">HKU AGENTS · 校园知识与服务智能助手</div>
+                            <div class="timeline-sub">智能体架构与全栈开发</div>
                             <div class="project-detail">
-                                构建完整的机器学习模型评估流水线，实现从数据清洗、特征构建、信号生成到多模型训练与性能对比的全流程闭环，并支持严格的时序划分。
+                                构建面向香港大学的智能助手，将官方资料检索与 Portal、SIS、Moodle 和图书馆等校园服务工具结合。
                             </div>
                             <ul class="project-points">
-                                <li>实现经典量价特征自动生成模块，包括短期/长期动量、波动率、均线偏离度、成交量动量等 6 类核心因子，通过滚动窗口与 <code>pct_change</code> 高效计算并自动处理 NaN 数据。</li>
-                                <li>设计 Alpha 信号生成器，以链式调用方式灵活添加创新因子，例如量价顶背离信号（价格创新高同时成交量萎缩）与日内振幅等微观结构特征。</li>
-                                <li>开发 <code>QuantModelEvaluator</code>，支持任意 sklearn 风格模型的注册与批量评估，统一输出准确率、精确率等指标，并生成可排序的性能对比表，覆盖 LogisticRegression、RandomForest、XGBoost 等模型。</li>
+                                <li>结合父子分块、Qdrant 稠密检索和 BM25，支持中英文澄清、多模型接入以及有来源依据的回答。</li>
+                                <li>构建本地优先的平台、TypeScript DeepSeek Harness 插件、版本化 FastAPI 工具接口和受限 Chrome Bridge，在复用已登录会话的同时保护凭证与私有页面数据。</li>
+                                <li>设计图书馆预约流程，包含精确时段预览、明确确认、规则检查及提交后核验。只读工作流已完成线上验收；受监督预约功能仍待完整线上验收。</li>
                             </ul>
                             <div class="project-stack">
-                                <span>Python</span><span>Pandas</span><span>scikit-learn</span><span>XGBoost</span><span>Visualization</span>
+                                <span>Python</span><span>LangGraph</span><span>Qdrant</span><span>BM25</span><span>FastAPI</span><span>TypeScript</span>
                             </div>
+                            <a class="project-link" href="https://github.com/sh0redry/hku-agentic-knowledge-assistant" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看 HKU AGENTS 仓库">查看 GitHub 仓库 ↗</a>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
@@ -578,6 +592,7 @@
                             <div class="project-stack">
                                 <span>Solidity</span><span>Hardhat</span><span>OpenZeppelin</span><span>Chainlink</span><span>DeFi</span>
                             </div>
+                            <a class="project-link" href="https://github.com/sh0redry/HKU-FITE2010-Smart-Contract-Project-2025-26-Sem2" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看股票对冲保险协议仓库">查看 GitHub 仓库 ↗</a>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
@@ -589,6 +604,7 @@
                             <div class="project-stack">
                                 <span>C++</span><span>Game Logic</span><span>Console UI</span>
                             </div>
+                            <a class="project-link" href="https://github.com/sh0redry/ENGG1340-COMP2113-GP" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看 C++ 游戏仓库">查看 GitHub 仓库 ↗</a>
                         </div>
                     </div>
                 </div>

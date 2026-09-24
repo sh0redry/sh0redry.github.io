@@ -317,6 +317,17 @@
             font-size: 0.74rem;
             font-weight: 600;
         }
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 12px;
+            color: var(--primary);
+            font-size: 0.84rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .project-link:hover { text-decoration: underline; }
+        .project-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
 
         /* ── Responsive ── */
         @media (max-width: 640px) {
@@ -530,6 +541,7 @@ Visited a range of public and private fund companies, engaging in exchanges and 
                             <div class="project-stack">
                                 <span>Python</span><span>LightGBM</span><span>scikit-learn</span><span>SHAP</span><span>GeoPandas</span><span>AWS S3</span><span>Redshift</span>
                             </div>
+                            <a class="project-link" href="https://github.com/sh0redry/weeviltrak-forecasting-research" target="_blank" rel="noopener noreferrer" aria-label="View WeevilTrack repository on GitHub">View GitHub repository ↗</a>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
@@ -547,22 +559,24 @@ Visited a range of public and private fund companies, engaging in exchanges and 
                             <div class="project-stack">
                                 <span>Python</span><span>NumPy</span><span>Pandas</span><span>scikit-learn</span><span>LightGBM</span><span>XGBoost</span>
                             </div>
+                            <a class="project-link" href="https://github.com/srbisupermeni/HacKerU-trading" target="_blank" rel="noopener noreferrer" aria-label="View HackerU Trading repository on GitHub">View GitHub repository ↗</a>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
-                            <div class="timeline-title">Trading Visualization Platform</div>
-                            <div class="timeline-sub">Personal Project</div>
+                            <div class="timeline-title">HKU AGENTS · Agentic Knowledge and Campus Assistant</div>
+                            <div class="timeline-sub">Agent Architecture &amp; Full-Stack Development</div>
                             <div class="project-detail">
-                                Created an end-to-end machine learning evaluation pipeline for market data, covering data cleaning, alpha feature construction, signal generation, model training, and performance comparison under strict time-series splitting.
+                                Built an HKU-focused assistant that combines official-source retrieval with campus tools for Portal, SIS, Moodle, and Library workflows.
                             </div>
                             <ul class="project-points">
-                                <li>Automated classic price-volume factor generation across six core groups, including short/long momentum, volatility, moving-average deviation, and volume momentum, using rolling windows and <code>pct_change</code> with NaN handling.</li>
-                                <li>Designed a chainable Alpha signal generator for custom factors such as price-volume bearish divergence and intraday range features.</li>
-                                <li>Developed <code>QuantModelEvaluator</code> to register and batch-evaluate sklearn-style models, including Logistic Regression, Random Forest, and XGBoost, with sortable accuracy and precision comparison tables plus visual model-selection outputs.</li>
+                                <li>Combined parent–child chunking, Qdrant dense retrieval, and BM25 to support bilingual clarification and evidence-backed answers across multiple LLM providers.</li>
+                                <li>Built a local-first platform with a TypeScript DeepSeek Harness plugin, versioned FastAPI tools, and a restricted Chrome Bridge that reuses authenticated sessions while protecting credentials and private page data.</li>
+                                <li>Designed a controlled Library booking flow with exact-slot previews, explicit confirmation, policy checks, and post-submit verification. Read-only workflows have completed live acceptance; supervised booking awaits full live acceptance.</li>
                             </ul>
                             <div class="project-stack">
-                                <span>Python</span><span>Pandas</span><span>scikit-learn</span><span>XGBoost</span><span>Visualization</span>
+                                <span>Python</span><span>LangGraph</span><span>Qdrant</span><span>BM25</span><span>FastAPI</span><span>TypeScript</span>
                             </div>
+                            <a class="project-link" href="https://github.com/sh0redry/hku-agentic-knowledge-assistant" target="_blank" rel="noopener noreferrer" aria-label="View HKU AGENTS repository on GitHub">View GitHub repository ↗</a>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
@@ -580,6 +594,7 @@ Visited a range of public and private fund companies, engaging in exchanges and 
                             <div class="project-stack">
                                 <span>Solidity</span><span>Hardhat</span><span>OpenZeppelin</span><span>Chainlink</span><span>DeFi</span>
                             </div>
+                            <a class="project-link" href="https://github.com/sh0redry/HKU-FITE2010-Smart-Contract-Project-2025-26-Sem2" target="_blank" rel="noopener noreferrer" aria-label="View Stock Hedge Insurance repository on GitHub">View GitHub repository ↗</a>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot" style="background: #10b981; box-shadow: 0 0 0 2px #10b981;"></div>
@@ -591,6 +606,7 @@ Visited a range of public and private fund companies, engaging in exchanges and 
                             <div class="project-stack">
                                 <span>C++</span><span>Game Logic</span><span>Console UI</span>
                             </div>
+                            <a class="project-link" href="https://github.com/sh0redry/ENGG1340-COMP2113-GP" target="_blank" rel="noopener noreferrer" aria-label="View C++ game repository on GitHub">View GitHub repository ↗</a>
                         </div>
                     </div>
                 </div>
